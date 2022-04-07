@@ -1,0 +1,264 @@
+@font-face {
+    font-family: RBlack;
+    src: url('fonts/Rationell-Black.otf');
+}
+
+@font-face {
+    font-family: RRegular;
+    src: url('fonts/Rationell-Regular.otf');
+}
+
+$red : #CB2222;
+$white : white;
+$black: #161815;
+
+$font-small: 10pt;
+$font-medium: 15pt;
+$font-large: 50pt;
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: RRegular, sans-serif; 
+    letter-spacing: 1px;
+}
+
+@media (max-width: 1920px) {
+
+    .rregular {
+        letter-spacing: 1px;
+        font-family: RRegular, sans-serif;
+    }
+    
+    body {
+        overflow-x: hidden;
+        height: 150vh;
+    }
+
+    .bg {
+        width: 100vw;
+        position: absolute;
+        max-height: 720px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 60%;
+        }
+
+        img:not(img:nth-of-type(1)) {
+            display: none;
+        }
+
+        #gradient {
+            background: $black;
+            position: absolute;
+            top: 0%;
+            width: inherit;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0, $black);
+        }
+    }
+
+    nav {
+        position: sticky;
+        z-index: 99;
+        // background: rgba(0, 0, 0, 0.177);
+        top: 0%;
+        width: 100%;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        .navCont {
+            height: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 75%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.204);
+
+            span {
+                display: flex;
+                flex-direction: row;
+                flex-basis: 10%;
+                height: 100%;
+                justify-content: space-around;
+                align-items: center;
+                color: $white;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 600;
+                letter-spacing: 1px;
+                font-size: $font-small;
+                cursor: pointer;
+
+                div {
+                    width: 17px;
+                    height: 17px;
+                    background: $red;
+                    border-radius: 20px;
+                }
+            }
+
+            ul {
+                display: flex;
+                flex-direction: row;
+                flex-basis: 70%;
+                // background: green;
+                height: 100%;
+                align-items: center;
+                justify-content: space-around;
+
+                li {
+                    list-style: none;
+                    // background: orange;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+
+                    a {
+                        font-size: $font-small;
+                        font-family: 'Open Sans', sans-serif;
+                        color: $white;
+                        text-decoration: none;
+                        position: relative;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        letter-spacing: 0.9px;
+                    }
+
+                    a::after {
+                        position: absolute;
+                        content: "";
+                        width: 100%;
+                        height: 3px;
+                        background: $red;
+                        transform: scaleX(0);
+                        transition: transform 0.7s ease;
+                        transform-origin: right;
+                        left: 0%;
+                        top: 100%;
+                    }
+
+                    a:hover::after {
+                        transform: scaleX(1);
+                        transform-origin: left;
+                    }
+                }
+            }
+
+            #searchCont {
+                flex-basis: 10%;
+                // background: red;
+                display: flex;
+                justify-content: end;
+                cursor: pointer;
+
+                img {
+                    width: 20px;
+                }
+            }
+        }
+    }
+
+    header {
+        position: absolute;
+        top: 0%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.148);
+
+        .headerCont {
+            width: 75%;
+            height: 33%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            div:nth-of-type(1) {
+                color: white;
+                flex-basis: 50%;
+                h1 {
+                    margin-bottom: 20px;
+                    font-size: $font-large;
+                    font-family: RBlack, sans-serif;
+                    font-weight: 700;
+                    letter-spacing: 3px;
+
+                }
+
+                p {
+                    @extend .rregular;
+                    font-size: $font-small;
+                    width: 100%;
+                    line-height: 1.5rem;
+                }
+            }
+
+            div:nth-of-type(2) {
+                flex-basis: 50%;
+                display: flex; 
+                justify-content: flex-end;
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    color: white;
+                    font-family: 'Open Sans', sans-serif;
+                    font-weight: bold;
+
+                    li {
+                        list-style: none;
+                        font-size: 14pt;
+                        position: relative;
+                        padding: 5px 0px;
+                        cursor: pointer;
+                        transition: all 0.7s ease;
+                        // background: red;
+                        padding: 10px;
+                        transform-origin: center;
+                    }
+                    li:nth-of-type(1) {
+                        letter-spacing: 3px;
+                    }
+                    li:after {
+                        position: absolute;
+                        content: ""; 
+                        top: 50%; 
+                        left: 210%; 
+                        width: 50vh; 
+                        height: 1px;
+                        background: white;
+                        transform-origin: right;
+                        transform: scaleX(0);
+                        transition: 0.7s ease;
+                    }
+                    li:hover {
+                        font-size: 17pt;
+                    }
+                    li:hover::after {
+                        transform: scaleX(1);
+                    }
+                    li:nth-of-type(1)::after{
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+    }
+}
