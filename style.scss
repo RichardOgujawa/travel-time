@@ -8,6 +8,11 @@
     src: url('fonts/Rationell-Regular.otf');
 }
 
+@font-face {
+    font-family: Heavitas;
+    src: url('fonts/Heavitas.ttf');
+}
+
 $red : #CB2222;
 $white : white;
 $black: #161815;
@@ -22,7 +27,7 @@ $font-large: 50pt;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: RRegular, sans-serif; 
+    font-family: RRegular, sans-serif;
     letter-spacing: 1px;
 }
 
@@ -32,7 +37,7 @@ $font-large: 50pt;
         letter-spacing: 1px;
         font-family: RRegular, sans-serif;
     }
-    
+
     body {
         overflow-x: hidden;
         height: 150vh;
@@ -41,18 +46,23 @@ $font-large: 50pt;
     .bg {
         width: 100vw;
         position: absolute;
-        max-height: 720px;
+        height: 100vh;
         overflow: hidden;
 
         img {
+            position: absolute;
+            top: 0%;
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: 50% 60%;
+            display: block;
+            opacity: 1;
+            transition: 0.7s ease;
         }
 
-        img:not(img:nth-of-type(1)) {
-            display: none;
+        #img2 {
+            position: absolute;
         }
 
         #gradient {
@@ -61,9 +71,10 @@ $font-large: 50pt;
             top: 0%;
             width: inherit;
             height: 100%;
-            background: radial-gradient(circle at center, transparent 0, $black);
+            background: radial-gradient(600px 350px at center, transparent 0, rgba(0, 0, 0, 0.85));
         }
     }
+
 
     nav {
         position: sticky;
@@ -75,6 +86,8 @@ $font-large: 50pt;
         display: flex;
         justify-content: center;
         align-items: flex-end;
+        transition: 0.4s ease;
+
 
         .navCont {
             height: 50%;
@@ -83,27 +96,35 @@ $font-large: 50pt;
             justify-content: space-between;
             align-items: center;
             width: 75%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.204);
+            border-bottom: 1.5px solid rgba(255, 255, 255, 0.204);
 
             span {
                 display: flex;
                 flex-direction: row;
-                flex-basis: 10%;
+                flex-basis: 15%;
                 height: 100%;
-                justify-content: space-around;
                 align-items: center;
+                justify-content: flex-start;
                 color: $white;
+                gap: 10px;
                 font-family: 'Open Sans', sans-serif;
                 font-weight: 600;
                 letter-spacing: 1px;
                 font-size: $font-small;
                 cursor: pointer;
 
+                &:hover>div {
+                    width: 40px;
+                    // position: relative;
+                }
+
                 div {
                     width: 17px;
                     height: 17px;
                     background: $red;
                     border-radius: 20px;
+                    transition: 0.7s ease;
+                    ;
                 }
             }
 
@@ -153,6 +174,11 @@ $font-large: 50pt;
                         top: 100%;
                     }
 
+                    .active::after {
+                        transform: scaleX(1);
+
+                    }
+
                     a:hover::after {
                         transform: scaleX(1);
                         transform-origin: left;
@@ -160,16 +186,75 @@ $font-large: 50pt;
                 }
             }
 
-            #searchCont {
-                flex-basis: 10%;
-                // background: red;
-                display: flex;
-                justify-content: end;
-                cursor: pointer;
+            .search {
+                flex-basis: 15%;
+                width: 100%;
+                overflow: hidden;
 
-                img {
-                    width: 20px;
+                .searchCont {
+                    // background: red;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: end;
+                    cursor: pointer;
+                    gap: 10px;
+                    transform: translateY(15px);
+                    transition: 0.5s ease;
+
+                    // background: red;
+                    #search-field {
+                        width: 150px;
+                        background: transparent;
+                        border-bottom: 2px solid white;
+                        text-align: right;
+                        border: none;
+                        color: white;
+                        transition: 0.5s ease-out;
+
+                        // transform: translateY(90px);
+                        &::placeholder {
+                            color: rgba(255, 255, 255, 0.612);
+                        }
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    input::-webkit-search-cancel-button {
+                        display: none;
+                    }
+
+
+                    div {
+                        width: 100%;
+                        // background: green;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+
+                        #search-img {
+                            width: 20px;
+                            // background: red;
+                            transition: 0.5s ease;
+                            opacity: 0.5;
+                            &:hover {
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                    div:nth-of-type(1) {
+                        padding-right: 5px;
+                    }
+
                 }
+            }
+
+            .hamburger {
+
+                display: none;
             }
         }
     }
@@ -189,32 +274,58 @@ $font-large: 50pt;
             height: 33%;
             display: flex;
             flex-direction: row;
-            align-items: center;
+            // align-items: center;
 
-            div:nth-of-type(1) {
-                color: white;
-                flex-basis: 50%;
-                h1 {
-                    margin-bottom: 20px;
-                    font-size: $font-large;
-                    font-family: RBlack, sans-serif;
-                    font-weight: 700;
-                    letter-spacing: 3px;
 
-                }
+            .carouselCont {
+                flex-basis: 90%;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                // background: red;
+                margin-top: 0px;
 
-                p {
-                    @extend .rregular;
-                    font-size: $font-small;
-                    width: 100%;
-                    line-height: 1.5rem;
+
+                #carousel {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+                    height: 100%;
+                    transition: 0.4s ease;
+
+                    div {
+                        color: white;
+                        // background: red; 
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+
+                        h1 {
+                            margin-bottom: 20px;
+                            font-size: $font-large;
+                            font-family: Heavitas, sans-serif;
+                            font-weight: 700;
+                            letter-spacing: 3px;
+
+                        }
+
+                        p {
+                            @extend .rregular;
+                            font-size: $font-small;
+                            width: 100%;
+                            line-height: 1.5rem;
+                            font-weight: bold;
+                        }
+                    }
                 }
             }
 
             div:nth-of-type(2) {
-                flex-basis: 50%;
-                display: flex; 
+                flex-basis: 10%;
+                display: flex;
                 justify-content: flex-end;
+
                 ul {
                     display: flex;
                     flex-direction: column;
@@ -230,35 +341,206 @@ $font-large: 50pt;
                         cursor: pointer;
                         transition: all 0.7s ease;
                         // background: red;
-                        padding: 10px;
+                        margin-bottom: 5px;
+                        padding: 15px 10px;
                         transform-origin: center;
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        gap: 20px;
+
+                        &:hover {
+                            font-size: 19pt;
+                        }
+
+                        .lineNum {
+                            width: 30vh;
+                            position: absolute;
+                            left: 120%;
+                            height: 1px;
+                            background: white;
+                            transform: scaleX(0);
+                            transform-origin: right;
+                            transition: 0.4s transform ease;
+                        }
+
+                        .activeLine {
+                            transform: scaleX(1);
+                        }
                     }
+
                     li:nth-of-type(1) {
                         letter-spacing: 3px;
                     }
+
                     li:after {
                         position: absolute;
-                        content: ""; 
-                        top: 50%; 
-                        left: 210%; 
-                        width: 50vh; 
+                        content: "";
+                        top: 50%;
+                        left: 210%;
+                        width: 50vh;
                         height: 1px;
                         background: white;
                         transform-origin: right;
                         transform: scaleX(0);
                         transition: 0.7s ease;
                     }
-                    li:hover {
-                        font-size: 17pt;
-                    }
-                    li:hover::after {
-                        transform: scaleX(1);
-                    }
-                    li:nth-of-type(1)::after{
-                        transform: scaleX(1);
-                    }
                 }
             }
         }
     }
+
+    .moreDetailed {
+        position: absolute;
+        // background: green;
+        top: 100vh;
+        transform: translateY(-100%);
+        width: 100%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        .moreDetailedCont {
+            width: 75%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            img {
+                width: 50px;
+                height: 47px;
+                transition: 0.4s ease;
+            }
+
+            .fa {
+                transition: 0.4s ease;
+            }
+
+            button {
+                text-align: left;
+                border: none;
+                background: transparent;
+                font-weight: bold;
+                color: white;
+                cursor: pointer;
+
+                &:hover>.fa {
+                    transform: translateX(10px);
+                }
+            }
+
+            .detail1,
+            .detail2,
+            .detail3 {
+                // background: red;
+                display: flex;
+                //if you don't do position relative, the browser will take it that the new piece of content is being made relative to the entire screen. Change the background color to something else, and chanhge the position to absolute to see what I mean.
+                position: relative;
+                width: 100%;
+                flex-basis: 33.3%;
+                height: 100%;
+                gap: 20px;
+                cursor: pointer;
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    top: 97%;
+                    left: 0%;
+                    transform: translateY(-100%);
+                    width: 100%;
+                    height: 3px;
+                    background: $red;
+                    transform-origin: right;
+                    transform: scaleX(0);
+                    transition: 0.4s transform ease;
+                }
+
+                &:hover::after {
+                    transform-origin: left;
+                    transform: scaleX(1);
+                }
+
+                #detail-1-img,
+                #detail-2-img,
+                #detail-3-img {
+                    flex-basis: 15%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                }
+
+                #detail-1-txt,
+                #detail-2-txt,
+                #detail-3-txt {
+                    flex-basis: 85%;
+                    gap: 20px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 10pt;
+                    color: white;
+                }
+            }
+        }
+
+    }
+
+}
+
+@media (max-width: 789px) {
+    nav {
+        .navCont {
+            .logo {
+                display: flex;
+                gap: 5px;
+            }
+
+            .logo>div {
+                height: 15px;
+                width: 15px;
+            }
+
+            .logo>span {
+                font-size: 9pt;
+            }
+
+            .desktopNav {
+                display: none;
+
+                li>a {
+                    font-size: 9pt;
+                }
+            }
+
+            #searchCont>img {
+                width: 17px;
+                // background: red;
+                display: none;
+            }
+
+            .hamburger {
+                // background: red;
+                width: 30px;
+                height: 25px;
+                display: block;
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                justify-content: space-evenly;
+
+                span {
+                    width: 30px;
+                    height: 2px;
+                    background: white;
+                    transition: 0.4s ease;
+                }
+            }
+        }
+    }
+
 }
