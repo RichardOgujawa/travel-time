@@ -18,7 +18,7 @@ const img5 = document.getElementById("img5");
 
 const lineNum = document.querySelectorAll(".lineNum");
 
-const textH = document.querySelector(".txt1Cont").clientHeight;
+var textH = document.querySelector(".txt1Cont").clientHeight;
 
 const nav = document.getElementsByTagName("nav")[0];
 const navCont = document.querySelector(".navCont");
@@ -77,7 +77,7 @@ n1.addEventListener("click", () => {
 
 n2.addEventListener("click", () => {
 
-
+    
     img1.style.opacity = "0";
     img2.style.opacity = "1";
     img3.style.opacity = "0";
