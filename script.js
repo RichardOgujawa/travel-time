@@ -18,13 +18,11 @@ const img5 = document.getElementById("img5");
 
 const lineNum = document.querySelectorAll(".lineNum");
 
-var textH = document.querySelector(".txt1Cont").clientHeight;
-
 const nav = document.getElementsByTagName("nav")[0];
 const navCont = document.querySelector(".navCont");
 
 const carousel = document.getElementById("carousel");
-const carouselCont = document.querySelector(".carouselCont");
+var carouselCont = document.querySelector(".carouselCont");
 
 const searchImg = document.getElementById("search-img");
 const searchField = document.getElementById("search-field");
@@ -36,6 +34,7 @@ const detail2 = document.querySelector(".detail2");
 const imgdet2 = document.getElementById("imgdet2");
 const detail3 = document.querySelector(".detail3");
 const imgdet3 = document.getElementById("imgdet3");
+
 
 var on = true;
 var searchToggle = true;
@@ -59,6 +58,7 @@ hamburger.addEventListener("click", () => {
 });
 
 n1.addEventListener("click", () => {
+
     img1.style.opacity = "1";
     img2.style.opacity = "0";
     img3.style.opacity = "0";
@@ -77,7 +77,8 @@ n1.addEventListener("click", () => {
 
 n2.addEventListener("click", () => {
 
-    
+    const textH = document.querySelector(".txt1Cont").clientHeight;
+
     img1.style.opacity = "0";
     img2.style.opacity = "1";
     img3.style.opacity = "0";
@@ -94,6 +95,8 @@ n2.addEventListener("click", () => {
 });
 
 n3.addEventListener("click", () => {
+    const textH = document.querySelector(".txt1Cont").clientHeight;
+
     img1.style.opacity = "0";
     img2.style.opacity = "0";
     img3.style.opacity = "1";
@@ -110,6 +113,8 @@ n3.addEventListener("click", () => {
 });
 
 n4.addEventListener("click", () => {
+    const textH = document.querySelector(".txt1Cont").clientHeight;
+
     img1.style.opacity = "0";
     img2.style.opacity = "0";
     img3.style.opacity = "0";
@@ -128,6 +133,8 @@ n4.addEventListener("click", () => {
 });
 
 n5.addEventListener("click", () => {
+    const textH = document.querySelector(".txt1Cont").clientHeight;
+
     img1.style.opacity = "0";
     img2.style.opacity = "0";
     img3.style.opacity = "0";
@@ -203,3 +210,26 @@ detail3.addEventListener("mouseenter", ()=> {
 detail3.addEventListener("mouseleave", ()=> {
     imgdet3.style.filter = "grayscale(0)";
 });
+
+function onLoad() {
+    const windowW = window.innerWidth;
+    const txt1Conth1 = document.querySelector(".txt1Conth1");
+
+    if (windowW <= 789) {
+        console.log("mobile");
+        txt1Conth1.style.fontSize="40pt";
+        
+    } else {
+        console.log("desktop");
+        txt1Conth1.style.
+        carouselCont.style.background="green";
+        fontSize="70pt";
+    }
+}
+
+setInterval(function() {
+    onLoad();
+}, 100);
+
+onLoad();
+
