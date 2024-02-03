@@ -28,13 +28,13 @@
     font-family: RRegular, sans-serif;
   }
   body {
-    overflow-x: hidden;
+    overflow: hidden;
     height: 101vh;
   }
   .bg {
     width: 100vw;
     position: absolute;
-    height: 720px;
+    height: 100vh;
     overflow: hidden;
   }
   .bg img {
@@ -59,8 +59,8 @@
     position: absolute;
     top: 0%;
     width: inherit;
-    height: 100%;
-    background: radial-gradient(600px 350px at center, transparent 0, rgba(0, 0, 0, 0.85));
+    height: 100vh;
+    background: radial-gradient(70vw 50vh at center, transparent 0, rgba(0, 0, 0, 0.85));
   }
   nav {
     position: -webkit-sticky;
